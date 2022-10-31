@@ -1,21 +1,27 @@
-<button id="confirmationButton" type="button" onclick="dialog.showModal()">Click me</button>
+<button id="confirmationButton" type="button"
+    onclick="showDialogWithCustomMessage('Are you sure you want to continue?')">Click me</button>
 
 <p id="afterClickMessage"></p>
 
 <dialog id="dialog">
-    <form method="dialog">
-      <p>Custom message</p>
-      <button id="yesButton" onclick="pressYesButton()" >Yes</button>
-      <button id="cancelButton" onclick="pressCancelButton()">Cancel</button>
-    </form>
-  </dialog>
+    <p id="customMessage"></p>
+    <button id="yesButton" onclick="pressYesButton()">Yes</button>
+    <button id="cancelButton" onclick="pressCancelButton()">Cancel</button>
+</dialog>
 
 <script>
-function pressYesButton() {
-    document.getElementById('afterClickMessage').innerHTML = 'You just clicked Yes';
-}
+    function showDialogWithCustomMessage(message) {
+        document.getElementById('dialog').show();
+        document.getElementById('customMessage').innerHTML = message;
+    }
 
-function pressCancelButton() {
-    document.getElementById('afterClickMessage').innerHTML = 'You just clicked Cancel';
-}
+    function pressYesButton() {
+        document.getElementById('dialog').close();
+        document.getElementById('afterClickMessage').innerHTML = 'You just clicked Yes';
+    }
+
+    function pressCancelButton() {
+        document.getElementById('dialog').close();
+        document.getElementById('afterClickMessage').innerHTML = 'You just clicked Cancel';
+    }
 </script>
