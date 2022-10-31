@@ -10,6 +10,7 @@
 </dialog>
 
 <script>
+    // main page
     document.addEventListener('yes-button-clicked', () => {
         document.getElementById('afterClickMessage').innerHTML = 'You just clicked "Yes"';
     });
@@ -20,8 +21,15 @@
 
     function showDialogWithCustomMessage(message) {
         document.getElementById('dialog').show();
-        document.getElementById('customMessage').innerHTML = message;
+        const event = new CustomEvent('custom-message-sent', { detail: message });
+        document.dispatchEvent(event);
     }
+
+    // confirmation dialog component
+    document.addEventListener('custom-message-sent', (e) => {
+        console.log('e', e);
+        document.getElementById('customMessage').innerHTML = e.detail;
+    });
 
     function pressYesButton() {
         document.getElementById('dialog').close();
