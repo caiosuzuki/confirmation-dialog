@@ -10,6 +10,14 @@
 </dialog>
 
 <script>
+    document.addEventListener('yes-button-clicked', () => {
+        document.getElementById('afterClickMessage').innerHTML = 'You just clicked "Yes"';
+    });
+
+    document.addEventListener('cancel-button-clicked', () => {
+        document.getElementById('afterClickMessage').innerHTML = 'You just clicked "Cancel"';
+    });
+
     function showDialogWithCustomMessage(message) {
         document.getElementById('dialog').show();
         document.getElementById('customMessage').innerHTML = message;
@@ -17,11 +25,13 @@
 
     function pressYesButton() {
         document.getElementById('dialog').close();
-        document.getElementById('afterClickMessage').innerHTML = 'You just clicked Yes';
+        const event = new Event('yes-button-clicked');
+        document.dispatchEvent(event);
     }
 
     function pressCancelButton() {
         document.getElementById('dialog').close();
-        document.getElementById('afterClickMessage').innerHTML = 'You just clicked Cancel';
+        const event = new Event('cancel-button-clicked');
+        document.dispatchEvent(event);
     }
 </script>
