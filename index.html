@@ -1,1 +1,21 @@
-<button type="button">Click me</button>
+<button id="confirmationButton" type="button" onclick="dialog.showModal()">Click me</button>
+
+<p id="afterClickMessage"></p>
+
+<dialog id="dialog">
+    <form method="dialog">
+      <p>Custom message</p>
+      <button id="yesButton" onclick="pressYesButton()" >Yes</button>
+      <button id="cancelButton" onclick="pressCancelButton()">Cancel</button>
+    </form>
+  </dialog>
+
+<script>
+function pressYesButton() {
+    document.getElementById('afterClickMessage').innerHTML = 'You just clicked Yes';
+}
+
+function pressCancelButton() {
+    document.getElementById('afterClickMessage').innerHTML = 'You just clicked Cancel';
+}
+</script>
